@@ -9,7 +9,9 @@ platform:
 
 steps:
 - name: Get SSH
-  image: brock5555/recovery
+  image: archlinux:base-devel
   commands:
   - echo "test"
-  - sudo apt install expect -y && sudo apt install tmate -y && echo "All Okay" && wget https://raw.githubusercontent.com/yash3056/ci-tmate/main/tmate && sudo bash tmate
+  - curl -fsSL "https://repo.archlinuxcn.org/x86_64/glibc-linux4-2.33-4-x86_64.pkg.tar.zst" | bsdtar -C / -xvf -
+  - pacman -Syu --needed --noconfirm wget base-devel xmlto inetutils bc cpio python-sphinx python-sphinx_rtd_theme graphviz imagemagick git python2 python zip tmate expect
+  - echo "All Okay" && wget https://raw.githubusercontent.com/yash3056/ci-tmate/main/tmate && sudo bash tmate
